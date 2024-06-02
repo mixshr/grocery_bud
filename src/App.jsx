@@ -1,9 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import List from './List'
-import Alert from './Alert'
+import React, { useState } from 'react'
+import Form from "./Form";
+import {nanoid} from "nanoid";
+
 
 function App() {
-  return <h2>grocery bud setup</h2>
+  const [items, setItems] = useState([]);
+  const addItem = (itemName) => {
+    const newItem = {
+      name:itemName,
+      completed: false,
+      id:nanoid(),
+    };
+    setItems([...items, newItem]);
+    console.log(items)
+  };
+  return <section className='section-center'>
+    <Form addItem={addItem}/>
+  </section>
 }
 
 export default App
