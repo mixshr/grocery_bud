@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Form from "./Form";
 import {nanoid} from "nanoid";
+import Items from "./Items";
 
 
 function App() {
@@ -12,10 +13,15 @@ function App() {
       id:nanoid(),
     };
     setItems([...items, newItem]);
-    console.log(items)
   };
+
+  const removeItem = (itemID) => {
+
+  }
+
   return <section className='section-center'>
     <Form addItem={addItem}/>
+    <Items items={items} removeItem={removeItem}/>
   </section>
 }
 
