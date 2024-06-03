@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import Form from "./Form";
 import {nanoid} from "nanoid";
 import Items from "./Items";
+import {ToastContainer} from "react-toastify";
 
 const setLocaleStorage = (items) => {
   localStorage.setItem('list', JSON.stringify(items));
@@ -36,9 +37,19 @@ function App() {
     setLocaleStorage(newItems);
   }
 
+  const editItem = (itemId) => {
+    items.map((item) => {
+      if (itemId === item.id) {
+        return {...item, completed: !item.completed};
+      }
+      return item;
+    });
+  };
+
   return <section className='section-center'>
+    <ToastContainer position='top-center'/>
     <Form addItem={addItem}/>
-    <Items items={items} removeItem={removeItem}/>
+    <Items items={items} removeItem={removeItem} editItem={editItem}/>
   </section>
 }
 
